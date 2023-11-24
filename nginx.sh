@@ -1,12 +1,14 @@
 sudo apt-get update
+sudo apt-get wget -y
 sudo apt-get install nginx -y
 sudo apt-get install mariadb-server -y
+sudo apt-get install git -y
 
 apt-get install -y lsb-release ca-certificates apt-transport-https software-properties-common gnupg2
 curl -sSLo /usr/share/keyrings/deb.sury.org-php.gpg https://packages.sury.org/php/apt.gpg
 sh -c 'echo "deb [signed-by=/usr/share/keyrings/deb.sury.org-php.gpg] https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
 
-sudo apt-get install php8.1-mbstring php8.1-xml php8.1-cli php8.1-common php8.1-intl php8.1-opcache php8.1-readline php8.1-mysql php8.1-fpm php8.1-curl unzip wget -y
+sudo apt-get install php8.1-mbstring php8.1-xml php8.1-cli php8.1-common php8.1-intl php8.1-opcache php8.1-readline php8.1-mysql php8.1-fpm php8.1-curl -y
 
 service nginx start
 service php8.1-fpm start
@@ -20,9 +22,11 @@ sudo mv composer.phar /usr/local/bin/composer
 ## Check Version
 composer --version
 mysql --version
-php --version
+php -v
 
 ## Setup Mysql Databases
+mysql -u root -p
+
 CREATE USER 'testing'@'%' IDENTIFIED BY 'testing';
 CREATE USER 'testing'@'localhost' IDENTIFIED BY 'testing';
 CREATE DATABASE testing;
